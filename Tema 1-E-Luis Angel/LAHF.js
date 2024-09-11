@@ -84,7 +84,7 @@ let persona = () => {
         empleado.saluda(horasTrabajadas)
     }
     if (empleados.length > 0) {
-        empleados[empleados.length - 1].despedir(); // Despedir al último empleado
+        empleados[empleados.length - 1].despedir(); 
     }
 }
 
