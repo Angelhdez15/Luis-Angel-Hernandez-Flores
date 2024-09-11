@@ -9,6 +9,7 @@ class Empleado {
         this._telefono = Telefono;
         this._salarioBase = 300; 
     }
+
     set nombre(Nombre) {
         this._nombre = Nombre;
     }
@@ -48,6 +49,7 @@ class Empleado {
     get telefono() {
         return this._telefono;
     }
+
     calcularSalario(horasTrabajadas) {
         let salario = this._salarioBase;
         if (horasTrabajadas > 8) {
@@ -59,32 +61,35 @@ class Empleado {
 
     saluda(horasTrabajadas) {
         let salario = this.calcularSalario(horasTrabajadas);
-console.log(`Hola ${this._nombre} ${this._apellido}, tus datos son:RFC: ${this._rfc}, TU Dirección donde vives es: ${this._direccion}, y tu Teléfono es: ${this._telefono}
+        console.log(`Hola ${this._nombre} ${this._apellido}, tus datos son: RFC: ${this._rfc}, Dirección: ${this._direccion}, Teléfono: ${this._telefono}.
         Has trabajado ${horasTrabajadas} horas y tu salario es: ${salario.toFixed(2)} pesos.`);
     }
-    despedir(){
-        console.log(`Hola ${this._nombre} ${this._apellido} te comunicamos que haz sido despedido`);
-        
+
+    despedir() {
+        console.log(`Hola ${this._nombre} ${this._apellido}, te comunicamos que has sido despedido.`);
     }
 }
 
 let persona = () => {
     let contratar = parseInt(prompt("Cantidad de empleados nuevos para agregar: "));
-    let empleados=[]
+    let empleados = [];
     for (let i = 0; i < contratar; i++) {
         let empleado = new Empleado();
-        
+
         empleado.nombre = prompt("Ingrese el nombre: ");
         empleado.apellido = prompt("Ingrese el apellido: ");
         empleado.rfc = prompt("Ingrese su RFC: ");
         empleado.direccion = prompt("Ingrese su dirección: ");
         empleado.telefono = parseInt(prompt("Ingrese su número telefónico: "));
         let horasTrabajadas = parseInt(prompt("Ingrese las horas trabajadas hoy: "));
-        empleados.push(empleado)
-        empleado.saluda(horasTrabajadas)
+        
+        empleados.push(empleado);
+        empleado.saluda(horasTrabajadas);
     }
+
+    // Despedir al último empleado agregado
     if (empleados.length > 0) {
-        empleados[empleados.length - 1].despedir(); 
+        empleados[empleados.length - 1].despedir();
     }
 }
 
