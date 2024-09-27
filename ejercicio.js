@@ -11,8 +11,7 @@ class persona{
         
     }
 }
-
-let persona1=new persona("joel",18,"hombre","villa",345345)
+let persona1=new persona("joel",18,"hombre","villa",86878)
 let persona2=new persona("simon",18,"hombre","balancan",43553)
 let persona3=new persona("diana",19,"mujer","zapata",6764734)
 persona1.saludar()
