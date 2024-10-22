@@ -3,6 +3,7 @@ import './App.css';
 import Otro from './Otro';
 import Formulario from './Fomulariocss';
 import Formularioboot from './componentes/Fomularioboot';
+import Profile from './Props';
 function Mensaje(){
   return(
   <h1>esta es mi funcion</h1>
@@ -25,11 +26,13 @@ function App() {
     </div>
     <div className="App">
       <h1>Hola</h1>
+
       <Mensaje/>
       <Otro />
       <Formulario/>
       <div className="container-fluid p-3 ">
         <Formularioboot />
+        <Profile/>
       </div>
     </div>
     </>
