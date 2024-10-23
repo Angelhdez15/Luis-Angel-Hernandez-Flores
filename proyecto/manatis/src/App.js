@@ -1,4 +1,4 @@
-//import logo from './logo.svg';
+/* //import logo from './logo.svg';
 import './App.css';
 import Otro from './Otro';
 import Formulario from './Fomulariocss';
@@ -40,3 +40,28 @@ function App() {
 }
 
 export default App;
+ */
+
+/* import Propiedades from "./componentes/Propiedades"
+function App (){
+  const variable1=5
+  const variable2=8
+  return(
+    <>
+    <Propiedades variable1={variable1} variable2={variable2}nombre="dany" varbol={true}/>
+    <Propiedades variable1={variable1} variable2={variable2} nombre="luis" varbol={false}/>
+    </>
+  )
+}
+export default App */
+import React from 'react'
+import Estados from './componentes/Estados'
+
+ function App() {
+  return (
+    <>
+    <Estados/>
+    </>
+  )
+}
+export default App
