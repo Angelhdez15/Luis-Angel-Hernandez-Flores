@@ -9,7 +9,7 @@ const manaties = [
 function EspeciesM() {
   return (
     <div>
-      <h1>Especies De Manatis</h1>
+      <center> <h1>Especies De Manatis</h1></center>
     <table>
       <thead>
         <tr>

@@ -24,7 +24,7 @@ function Habitas() {
 
   return (
     <div>
-      <h1>Habitad De Las Especies De Los Manatis</h1>
+     <center><h1>Habitad De Las Especies De Los Manatis</h1></center> 
     <table>
       <thead>
         <tr>

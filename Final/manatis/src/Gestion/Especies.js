@@ -1,8 +1,9 @@
 import React,{useEffect, useState} from 'react'
-import { informacion } from '../../bd/Datos'
+import { informacion } from './Datos';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-function ViewCalificaciones() {
+
+function GestionEs() {
   const[info,setinfo]=useState([]);
 
   const mostarinfo=()=>{
@@ -46,10 +47,9 @@ const editarinfo=()=>{
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Matricula</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Apellido</th>
-      <th scope="col">Curp</th>
+      <th scope="col">Nombre comun</th>
+      <th scope="col">Nombre cientifico</th>
+      <th scope="col">Ubicacion</th>
       <td>Modificar</td>
       <td>Eliminar</td>
     </tr>
@@ -63,7 +63,6 @@ const editarinfo=()=>{
           <td>{values.matricula}</td>
           <td>{values.nombre}</td>
           <td>{values.apellido}</td>
-          <td>{values.curp}</td>
           <td>
                   <button
                     type="button"
@@ -89,9 +88,10 @@ const editarinfo=()=>{
   </tbody>
 </table>
 </>
+
   )
 }
-export default ViewCalificaciones
+export default GestionEs
 
 
 

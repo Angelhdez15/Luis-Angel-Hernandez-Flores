@@ -10,7 +10,7 @@ const manaties = [
 function Amenaza() {
   return (
     <div>
-      <h1>Amenazas De Las Especies De Manatis</h1>
+      <center><h1>Amenazas De Las Especies De Manatis</h1></center>
     <table>
       <thead>
         <tr>

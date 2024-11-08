@@ -7,7 +7,8 @@ import Home from '../componentes/Inicio/Home';
 import EspeciesM from '../componentes/Especies/Especies';
 import Habitas from '../componentes/Habitad/Habitad';
 import Amenaza from '../componentes/Amenazas/Amenaza';
-import Gestion from '../Gestion/Gestion';
+import Gestion from '../Gestion/Especies';
+import GestionEs from '../Gestion/Especies';
 
 function Rutas() {
   return (
@@ -16,7 +17,7 @@ function Rutas() {
          <Route path='/Especies' element={<EspeciesM/>}/>
          <Route path='/Habitad' element={<Habitas/>}/>
          <Route path='/Amenazas' element={<Amenaza/>}/>
-         <Route path='/Gestion' element={<Gestion/>}/>
+         <Route path='/Gestion' element={<GestionEs/>}/>
     </Routes>
   )
 }
