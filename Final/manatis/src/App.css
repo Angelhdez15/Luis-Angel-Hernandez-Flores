@@ -149,10 +149,14 @@ p {
 
 
 body {
-  background-image: url('https://th.bing.com/th/id/R.9c7a113b833751967181f62184239fb4?rik=yhbiGLrIaliUfA&riu=http%3a%2f%2fwww.solofondos.com%2fwp-content%2fuploads%2f2015%2f11%2fimagenes-bonitas-de-flores-para-colocar-como-fondo-de-pantalla4.jpg&ehk=f3TGZK%2b6lMQoaKPjIeGxkvXyuNPefOt8J6lir22c9R8%3d&risl=&pid=ImgRaw&r=0'); /* Reemplaza con la URL de tu imagen */
+  background-image: url('https://image.freepik.com/vector-gratis/paisaje-dibujos-animados-mar-u-oceano-cielo-nubes_53562-1725.jpg'); /* Reemplaza con la URL de tu imagen */
   background-size: cover; /* Ajusta la imagen para que cubra toda la pantalla */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
   background-attachment: fixed; /* La imagen se mantiene fija al hacer scroll */
   background-position: center; /* Centra la imagen */
 }
 
+.small-image {
+  width: 25%; /* Ajusta a tu preferencia */
+  height: auto; /* Mantiene la proporción */
+}

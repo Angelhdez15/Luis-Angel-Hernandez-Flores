@@ -45,6 +45,14 @@ function Habitas() {
         ))}
       </tbody>
     </table>
+    <br></br>
+    <section className="card-section mb-4">
+        <div className="card-content p-4">
+          <h3 className="text-success">Sabias que...</h3>
+          <p>En México, los manatíes también eran conocidos como tlacamichin, que significa “hombre pez”...</p>
+          <p>Estos lentos y curiosos animales duermen bajo el agua durante medio día...</p>
+        </div>
+      </section>
     </div>
   );
 }
