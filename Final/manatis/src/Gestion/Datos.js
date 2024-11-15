@@ -1,15 +1,15 @@
 export const informacion=[{
-    matricula:"Manatí Antillano"
-    ,nombre:"Trichechus manatus"
-    ,apellido:"Caribe"
+    nombreComun:"Manatí Antillano"
+    ,nombreCientifico:"Trichechus manatus"
+    ,ubicacion:"Caribe"
 },
 {
-    matricula:"Manatí Africano"
-    ,nombre:"Trichechus senegalensis"
-    ,apellido:"África Occidental"
+    nombreComun:"Manatí Africano"
+    ,nombreCientifico:"Trichechus senegalensis"
+    ,ubicacion:"África Occidental"
 },
 {
-    matricula:"Manatí Amazónico"
-    ,nombre:"	Trichechus inunguis"
-    ,apellido:"Amazonias"
+    nombreComun:"Manatí Amazónico"
+    ,nombreCientifico:"Trichechus inunguis"
+    ,ubicacion:"Amazonias"
 }]

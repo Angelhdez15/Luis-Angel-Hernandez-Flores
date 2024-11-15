@@ -1,4 +1,5 @@
 import React from 'react'
+import manati from './manati.jpg'
 // Datos de las especies de manatíes
 const manaties = [
   { Amenaza: 'Colisiones con embarcaciones', nombreCientifico: 'Manatí Antillano (Trichechus manatus)', ubicacion: 'Caribe' },
@@ -33,10 +34,26 @@ function Amenaza() {
     <section className="card-section mb-4">
         <div className="card-content p-4">
           <h3 className="text-success">Sabias que...</h3>
-          <p>En México, los manatíes también eran conocidos como tlacamichin, que significa “hombre pez”...</p>
-          <p>Estos lentos y curiosos animales duermen bajo el agua durante medio día...</p>
+          <p> Los manatíes tienen una historia evolutiva fascinante que se remonta a millones de años sus ancestros eran animales terrestres que, con el paso del tiempo, se adaptaron a la vida acuática.</p>
+          <p>Curiocidades:</p>
+          <p>Los manatíes pueden formar vínculos sociales y reconocer a otros individuos.</p>
         </div>
       </section>
+      <center>
+  <img 
+      src={manati} 
+      alt="Manatí" 
+      className="img-fluid"
+      style={{
+        maxWidth: '30%',
+        height: 'auto',
+        display: 'block',
+        borderRadius: '15px',
+        transition: 'transform 0.3s ease-in-out',
+      }}
+    />
+<br></br>
+</center> 
     </div>
   );
 }

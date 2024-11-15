@@ -30,9 +30,9 @@ function Menu() {
             Gestion
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Hábitat</a></li>
+            <li><a class="dropdown-item" href="/GestioHabi">Hábitat</a></li>
             <li><a class="dropdown-item" href="/Gestion">Especies</a></li>
-            <li><a class="dropdown-item" href="#">Amenazas</a></li>
+            <li><a class="dropdown-item" href="/GestionAm">Amenazas</a></li>
           </ul>
         </li>
         </ul>

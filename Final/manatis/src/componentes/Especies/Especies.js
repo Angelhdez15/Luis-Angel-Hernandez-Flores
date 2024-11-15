@@ -32,10 +32,25 @@ function EspeciesM() {
     <section className="card-section mb-4">
         <div className="card-content p-4">
           <h3 className="text-success">Sabias que...</h3>
-          <p>En México, los manatíes también eran conocidos como tlacamichin, que significa “hombre pez”...</p>
-          <p>Estos lentos y curiosos animales duermen bajo el agua durante medio día...</p>
+          <p>A pesar de que pueden formar pequeños grupos, los manatíes son principalmente animales solitarios.</p>
+          <p>Se comunican a través de una variedad de vocalizaciones, como chillidos, gruñidos y silbidos. Estas vocalizaciones sirven para diversos propósitos, como mantener el contacto con otros manatíes, expresar emociones y alertar sobre peligros Son animales muy curiosos y a menudo se acercan a los barcos y a los humanos..</p>
         </div>
       </section>
+      <center>
+  <img 
+      src="https://t1.ea.ltmcdn.com/es/posts/2/1/7/tipos_de_manaties_25712_1_orig.jpg" 
+      alt="Manatí" 
+      className="img-fluid"
+      style={{
+        maxWidth: '50%',
+        height: 'auto',
+        display: 'block',
+        borderRadius: '15px',
+        transition: 'transform 0.3s ease-in-out',
+      }}
+    />
+<br></br>
+</center> 
     </div>
   );
 }
