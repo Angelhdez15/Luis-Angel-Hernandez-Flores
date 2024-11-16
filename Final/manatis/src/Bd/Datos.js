@@ -16,5 +16,28 @@ export const informacion = [
       ubicacion: 'África occidental',
       alimentacion: 'Herbívoro: plantas acuáticas, pastos marinos',
       vegetacion: 'Plantas acuáticas de río, pastos marinos costeros',
-    },
+    }
   ]
+  export const informacion2=[
+    {
+      nombreComun:"Manatí Antillano"
+      ,nombreCientifico:"Trichechus manatus"
+      ,ubicacion:"Caribe"
+  },
+  {
+      nombreComun:"Manatí Amazónico"
+      ,nombreCientifico:"Trichechus inunguis"
+      ,ubicacion:"Amazonias"
+  },
+  {
+    nombreComun:"Manatí Africano"
+    ,nombreCientifico:"Trichechus senegalensis"
+    ,ubicacion:"África Occidental"
+},
+  ]
+  export const informacion3 = [
+    { Amenaza: 'Colisiones con embarcaciones', nombreCientifico: 'Manatí Antillano (Trichechus manatus)', ubicacion: 'Caribe' },
+    { Amenaza: 'Caza furtiva y captura accidental', nombreCientifico: 'Manatí Africano (Trichechus senegalensis)', ubicacion: 'África Occidental' },
+    { Amenaza: 'Crecimiento poblacional humano', nombreCientifico: 'Manatí Amazónico (Trichechus inunguis)', ubicacion: 'Amazonía' }
+    
+  ];

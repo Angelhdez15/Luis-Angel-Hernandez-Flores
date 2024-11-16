@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { informacion } from '../GestioHabi/DatosH';
+import { informacion } from '../Bd/Datos';
 
 function GestionHab() {
   const [info, setInfo] = useState([]);

@@ -1,13 +1,7 @@
 import React from 'react'
 import manati from './manati.jpg'
+import { informacion3 } from '../../Bd/Datos';
 // Datos de las especies de manatíes
-const manaties = [
-  { Amenaza: 'Colisiones con embarcaciones', nombreCientifico: 'Manatí Antillano (Trichechus manatus)', ubicacion: 'Caribe' },
-  { Amenaza: 'Caza furtiva y captura accidental', nombreCientifico: 'Manatí Africano (Trichechus senegalensis)', ubicacion: 'África Occidental' },
-  { Amenaza: 'Crecimiento poblacional humano', nombreCientifico: 'Manatí Amazónico (Trichechus inunguis)', ubicacion: 'Amazonía' }
-  
-];
-
 function Amenaza() {
   return (
     <div>
@@ -21,7 +15,7 @@ function Amenaza() {
         </tr>
       </thead>
       <tbody>
-        {manaties.map(manati => (
+        {informacion3.map(manati => (
           <tr key={manati.nombreCientifico}>
             <td>{manati.Amenaza}</td>
             <td>{manati.nombreCientifico}</td>

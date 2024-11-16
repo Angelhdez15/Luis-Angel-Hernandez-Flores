@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { informacion } from './Datos';
+import { informacion2 } from '../Bd/Datos';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -23,7 +23,7 @@ function GestionEs() {
     setValues({ ...values, [name]: value });
   };
 
-  const guardarInformacion = () => {
+  const guardarInformacion2 = () => {
     if (editingIndex !== null) {
       const updatedInfo = [...info];
       updatedInfo[editingIndex] = values;
@@ -36,7 +36,7 @@ function GestionEs() {
   };
 
   const mostrarInfo = () => {
-    setInfo(informacion);
+    setInfo(informacion2);
   };
 
   const eliminarInfo = (index) => {
@@ -118,7 +118,7 @@ function GestionEs() {
             <Button variant="secondary" onClick={cerrarModal}>
               Close
             </Button>
-            <Button variant="primary" onClick={guardarInformacion}>
+            <Button variant="primary" onClick={guardarInformacion2}>
               Guardar
             </Button>
           </Modal.Footer>

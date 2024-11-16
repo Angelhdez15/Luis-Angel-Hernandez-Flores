@@ -1,11 +1,6 @@
 import React from 'react'
+import { informacion2 } from '../../Bd/Datos';
 // Datos de las especies de manatíes
-const manaties = [
-  { nombreComun: 'Manatí Antillano', nombreCientifico: 'Trichechus manatus', ubicacion: 'Caribe' },
-  { nombreComun: 'Manatí Africano', nombreCientifico: 'Trichechus senegalensis', ubicacion: 'África Occidental' },
-  { nombreComun: 'Manatí Amazónico', nombreCientifico: 'Trichechus inunguis', ubicacion: 'Amazonía' }
-];
-
 function EspeciesM() {
   return (
     <div>
@@ -19,7 +14,7 @@ function EspeciesM() {
         </tr>
       </thead>
       <tbody>
-        {manaties.map(manati => (
+        {informacion2.map(manati => (
           <tr key={manati.nombreCientifico}>
             <td>{manati.nombreComun}</td>
             <td>{manati.nombreCientifico}</td>

@@ -1,18 +1,24 @@
-const express = require("express");
-const bodyparser = require("body-parser");
-const cors = require("cors");
+// server.js
+import express from 'express';
+import {informacion,informacion2,informacion3 } from '/Final/manatis/src/Bd/Datos.js'
 
 const app = express();
-const port = process.env.PORT || 3001;
-// Middleware globales
-app.use(cors());
-app.use(bodyparser.urlencoded({ extended: true }));
-app.use(bodyparser.json());
+const port = 3000;
 
-// Rutas
-const manatis = require('./src/routes/Rutas');
-app.use('/api/Rutas', manatis);
+app.use(express.json());
+
+app.get('/informacion', (req, res) => {
+    res.json(informacion);
+});
+
+app.get('/informacion2', (req, res) => {
+    res.json(informacion2);
+});
+
+app.get('/informacion3', (req, res) => {
+    res.json(informacion3);
+});
 
 app.listen(port, () => {
-    console.log(`Servidor ejecutado en http://localhost:${port}`);
+    console.log(`Servidor escuchando en http://localhost:${port}`);
 });
