@@ -1,4 +1,3 @@
-
 export const informacion = [
     {
       especie: 'Manatí antillano o del Caribe (Trichechus manatus)',
