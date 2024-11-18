@@ -36,10 +36,7 @@ function Menu() {
           </ul>
         </li>
         </ul>
-        <form className="d-flex">
-          <input className="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" />
-          <button className="btn btn-outline-light" type="submit">Buscar</button>
-        </form>
+
       </div>
     </nav>
   );
