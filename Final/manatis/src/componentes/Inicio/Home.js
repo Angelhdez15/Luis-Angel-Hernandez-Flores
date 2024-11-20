@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import manati from './manati.jpg';
 import repro from './repro.mp4';
-import manati1 from './manati1.jpg';
-
 function Home() {
   const [search, setSearch] = useState(''); // Estado para el valor de búsqueda
 
@@ -12,7 +10,7 @@ function Home() {
   };
 
   // Función para resaltar las coincidencias en el texto
-  const highlightText = (text) => {
+  const Text = (text) => {
     if (!search) return text;
     const regex = new RegExp(`(${search})`, 'gi'); // Expresión regular para encontrar las coincidencias
     const parts = text.split(regex); // Dividimos el texto en partes
@@ -32,7 +30,7 @@ function Home() {
       <div className="input-container">
       <input
         type="text"
-        placeholder="Buscar palabras claves"
+        placeholder="Resaltar palabras claves"
         value={search}
         onChange={handleSearchChange}
         className="input-field"
@@ -63,11 +61,11 @@ function Home() {
       <section className="card-section mb-4">
         <div className="card-content p-4">
           <h3 className="text-success">Características del Manatí</h3>
-          <p>{highlightText('Los manatíes tienen un cuerpo grande y redondeado, ideal para flotar en aguas poco profundas....')}</p>
-          <p>{highlightText('La piel: Es de unos 5 cm de espesor, con finas arrugas y de coloración gris parda. Piel gruesa, su piel es gruesa y áspera, lo que los protege de las rozaduras con objetos submarinos....')}</p>
-          <p>{highlightText('Aletas: Poseen dos aletas pectorales pequeñas y una aleta caudal grande y aplanada, similar a la de una foca.')}</p>
-          <p>{highlightText('Hocico: Su hocico es ancho y flexible, perfecto para arrancar la vegetación de la que se alimentan.')}</p>
-          <p>{highlightText('Tamaño: Pueden alcanzar los 3 metros de longitud y pesar hasta 600 kilogramos.')}</p>
+          <p>{Text('Los manatíes tienen un cuerpo grande y redondeado, ideal para flotar en aguas poco profundas....')}</p>
+          <p>{Text('La piel: Es de unos 5 cm de espesor, con finas arrugas y de coloración gris parda. Piel gruesa, su piel es gruesa y áspera, lo que los protege de las rozaduras con objetos submarinos....')}</p>
+          <p>{Text('Aletas: Poseen dos aletas pectorales pequeñas y una aleta caudal grande y aplanada, similar a la de una foca.')}</p>
+          <p>{Text('Hocico: Su hocico es ancho y flexible, perfecto para arrancar la vegetación de la que se alimentan.')}</p>
+          <p>{Text('Tamaño: Pueden alcanzar los 3 metros de longitud y pesar hasta 600 kilogramos.')}</p>
         </div>
       </section>
 
@@ -91,10 +89,10 @@ function Home() {
       <section className="card-section mb-4">
         <div className="card-content p-4">
           <h3 className="text-success">Historia del Manatí</h3>
-          <p>{highlightText('Los manatíes, junto con los dugongos, pertenecen al orden Sirenia. Sus ancestros más remotos eran mamíferos terrestres que, con el paso del tiempo, se adaptaron a la vida acuática.')}</p>
-          <p>{highlightText('Estas criaturas evolucionaron para pasar más tiempo en el agua, desarrollando características como aletas en lugar de patas, un cuerpo hidrodinámico y una gruesa capa de grasa para aislarse del frío.')}</p>
-          <p>{highlightText('Los fósiles de manatíes han proporcionado valiosa información sobre su evolución. Se han encontrado restos de especies antiguas que muestran cómo estos animales cambiaron a lo largo de millones de años.')}</p>
-          <p>{highlightText('Desafortunadamente, muchas especies de manatíes se extinguieron debido a cambios climáticos, cambios en el nivel del mar y la caza por parte de humanos.')}</p>
+          <p>{Text('Los manatíes, junto con los dugongos, pertenecen al orden Sirenia. Sus ancestros más remotos eran mamíferos terrestres que, con el paso del tiempo, se adaptaron a la vida acuática.')}</p>
+          <p>{Text('Estas criaturas evolucionaron para pasar más tiempo en el agua, desarrollando características como aletas en lugar de patas, un cuerpo hidrodinámico y una gruesa capa de grasa para aislarse del frío.')}</p>
+          <p>{Text('Los fósiles de manatíes han proporcionado valiosa información sobre su evolución. Se han encontrado restos de especies antiguas que muestran cómo estos animales cambiaron a lo largo de millones de años.')}</p>
+          <p>{Text('Desafortunadamente, muchas especies de manatíes se extinguieron debido a cambios climáticos, cambios en el nivel del mar y la caza por parte de humanos.')}</p>
         </div>
       </section>
 
@@ -118,9 +116,9 @@ function Home() {
       <section className="card-section mb-4">
         <div className="card-content p-4">
           <h3 className="text-success">Reproducción del Manatí</h3>
-          <p>{highlightText('Los manatíes alcanzan la madurez sexual entre los 5 y 9 años de edad El apareamiento suele ocurrir en aguas poco profundas y cálidas. Los machos pueden ser bastante activos durante la época de reproducción, compitiendo por las hembras.')}</p>
-          <p>{highlightText('Después del apareamiento, la hembra lleva a su cría en el vientre durante aproximadamente 12-13 meses, Este período de gestación es uno de los más largos entre los mamíferos marinos La cría nace bajo el agua y suele pesar alrededor de 30 kilogramos. La madre ayuda al recién nacido a subir a la superficie para tomar su primera respiración.')}</p>
-          <p>{highlightText('La cría nace bajo el agua y suele pesar alrededor de 30 kilogramos, La madre ayuda al recién nacido a subir a la superficie para tomar su primera respiración Las madres amamantan a sus crías durante varios meses. La leche de manatí es muy rica en nutrientes y proporciona todo lo que la cría necesita para crecer.')}</p>
+          <p>{Text('Los manatíes alcanzan la madurez sexual entre los 5 y 9 años de edad El apareamiento suele ocurrir en aguas poco profundas y cálidas. Los machos pueden ser bastante activos durante la época de reproducción, compitiendo por las hembras.')}</p>
+          <p>{Text('Después del apareamiento, la hembra lleva a su cría en el vientre durante aproximadamente 12-13 meses, Este período de gestación es uno de los más largos entre los mamíferos marinos La cría nace bajo el agua y suele pesar alrededor de 30 kilogramos. La madre ayuda al recién nacido a subir a la superficie para tomar su primera respiración.')}</p>
+          <p>{Text('La cría nace bajo el agua y suele pesar alrededor de 30 kilogramos, La madre ayuda al recién nacido a subir a la superficie para tomar su primera respiración Las madres amamantan a sus crías durante varios meses. La leche de manatí es muy rica en nutrientes y proporciona todo lo que la cría necesita para crecer.')}</p>
         </div>
       </section>
 

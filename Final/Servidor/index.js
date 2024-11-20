@@ -5,6 +5,7 @@ const path = require("path");
 const app = express();
 const port = 3001;
 const buildPath = path.join(__dirname, '..', 'manatis', 'build');
+
 console.log('Ruta buildPath:', buildPath); // Verifica la ruta
 
 app.use(express.static(buildPath))

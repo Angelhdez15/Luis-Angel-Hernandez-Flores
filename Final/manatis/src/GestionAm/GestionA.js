@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { informacion3 } from '../Bd/Datos';
+import { AmenazaContext } from './AmenazaContext';
 
 function GestionA() {
-  const [info, setInfo] = useState([]);
+  const { manaties, setManaties } = useContext(AmenazaContext); // Accede al contexto
   const [showModal, setShowModal] = useState(false);
   const [values, setValues] = useState({
     Amenaza: '',
-    ubicacion: "",
-    nombreCientifico: ""
+    ubicacion: '',
+    nombreCientifico: '',
   });
-
   const [editingIndex, setEditingIndex] = useState(null);
 
   const abrirModal = () => setShowModal(true);
@@ -25,88 +24,72 @@ function GestionA() {
 
   const guardarinformacion3 = () => {
     if (editingIndex !== null) {
-      const updatedInfo = [...info];
-      updatedInfo[editingIndex] = values;
-      setInfo(updatedInfo);
+      const updatedManaties = [...manaties];
+      updatedManaties[editingIndex] = values;
+      setManaties(updatedManaties);
       setEditingIndex(null);
     } else {
-      setInfo([...info, values]);
+      setManaties([...manaties, values]);
     }
-    setValues({ Amenaza: '',  ubicacion: '', nombreCientifico: ''});
-  };
-
-  const mostrarInfo = () => {
-    setInfo(informacion3);
+    setValues({ Amenaza: '', ubicacion: '', nombreCientifico: '' });
+    cerrarModal();
   };
 
   const eliminarInfo = (index) => {
-    const updatedInfo = info.filter((_, i) => i !== index);
-    setInfo(updatedInfo);
+    const updatedManaties = manaties.filter((_, i) => i !== index);
+    setManaties(updatedManaties);
   };
 
   const editarInfo = (index) => {
     setEditingIndex(index);
-    setValues(info[index]);
+    setValues(manaties[index]);
     abrirModal();
   };
 
-  useEffect(() => {
-    mostrarInfo();
-  }, []);
-
   return (
     <>
-          <center> <h1>Amenazas De Manatis</h1></center>
+      <center><h1>Amenazas De Manatíes</h1></center>
       <div className="row">
         <Button variant="primary" onClick={abrirModal}>
-          Agregar Especies...
+          Agregar Amenaza...
         </Button>
 
         <Modal show={showModal} onHide={cerrarModal}>
           <Modal.Header closeButton>
-            <Modal.Title>Habitad</Modal.Title>
+            <Modal.Title>Amenaza</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form>
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">
-                  Amenazas
-                </label>
+              <div className="mb-3">
+                <label className="form-label">Amenaza</label>
                 <input
                   type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  placeholder="Ingresa el nombre de la especie"
+                  className="form-control"
+                  placeholder="Ingresa el nombre de la amenaza"
                   name="Amenaza"
                   onChange={obtenerValues}
                   value={values.Amenaza}
                 />
               </div>
 
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">
-                  Ubicacion
-                </label>
+              <div className="mb-3">
+                <label className="form-label">Ubicación</label>
                 <input
                   type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  placeholder="Ingresa el nombre cientifico de la especie"
+                  className="form-control"
+                  placeholder="Ingresa la ubicación de la amenaza"
                   name="ubicacion"
                   onChange={obtenerValues}
                   value={values.ubicacion}
                 />
               </div>
 
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">
-                Nombre Cientifico:
-                </label>
+              <div className="mb-3">
+                <label className="form-label">Nombre Científico</label>
                 <input
                   type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  placeholder="Ingresa la ubicacion de la especie"
+                  className="form-control"
+                  placeholder="Ingresa el nombre científico"
                   name="nombreCientifico"
                   onChange={obtenerValues}
                   value={values.nombreCientifico}
@@ -116,7 +99,7 @@ function GestionA() {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={cerrarModal}>
-              Close
+              Cerrar
             </Button>
             <Button variant="primary" onClick={guardarinformacion3}>
               Guardar
@@ -124,40 +107,41 @@ function GestionA() {
           </Modal.Footer>
         </Modal>
       </div>
-      <table class="table">
+
+      <table className="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Amenazas</th>
-            <th scope="col">ubicacion</th>
-            <th scope="col">Nombre Cientifico:</th>
-            <th scope="col">Modificar</th>
-            <th scope="col">Eliminar</th>
+            <th>#</th>
+            <th>Amenazas</th>
+            <th>Ubicación</th>
+            <th>Nombre Científico</th>
+            <th>Modificar</th>
+            <th>Eliminar</th>
           </tr>
         </thead>
         <tbody>
-          {info.map((values, index) => (
+          {manaties.map((values, index) => (
             <tr key={index}>
-              <th scope="row">{index + 1}</th>
+              <th>{index + 1}</th>
               <td>{values.Amenaza}</td>
               <td>{values.ubicacion}</td>
               <td>{values.nombreCientifico}</td>
               <td>
                 <button
                   type="button"
-                  class="btn btn-info"
+                  className="btn btn-info"
                   onClick={() => editarInfo(index)}
                 >
-                  <i class="bi bi-pencil-fill"></i>
+                  <i className="bi bi-pencil-fill"></i>
                 </button>
               </td>
               <td>
                 <button
                   type="button"
-                  class="btn btn-danger"
+                  className="btn btn-danger"
                   onClick={() => eliminarInfo(index)}
                 >
-                  <i class="bi bi-trash-fill"></i>
+                  <i className="bi bi-trash-fill"></i>
                 </button>
               </td>
             </tr>

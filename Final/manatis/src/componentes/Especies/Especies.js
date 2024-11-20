@@ -1,39 +1,28 @@
-import React, { useState } from 'react';
-import { informacion2 } from '../../Bd/Datos';
+import React, { useContext, useState } from 'react';
+import { EspeciesContext } from './EspeciesContext';
 
 function EspeciesM() {
-  // Estado para el término de búsqueda y los datos filtrados
+  const { especies } = useContext(EspeciesContext); // Accede al contexto
   const [search, setSearch] = useState('');
 
-  // Filtrado de los datos según el término de búsqueda
-  const filteredData = !search
-    ? informacion2
-    : informacion2.filter((manati) =>
-        manati.nombreComun.toLowerCase().includes(search.toLowerCase()) ||
-        manati.nombreCientifico.toLowerCase().includes(search.toLowerCase()) ||
-        manati.ubicacion.toLowerCase().includes(search.toLowerCase())
-      );
-
-  // Función para manejar el cambio en el campo de búsqueda
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  };
+  const filteredEspecies = especies.filter(
+    (especie) =>
+      especie.nombreComun.toLowerCase().includes(search.toLowerCase()) ||
+      especie.nombreCientifico.toLowerCase().includes(search.toLowerCase()) ||
+      especie.ubicacion.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div>
-      <center> <h1>Especies De Manatíes</h1></center>
-      
-      <div className="input-container">
+   <center><h1>Especies de Manatíes</h1>
       <input
         type="text"
-        placeholder="Buscar por Nombre Común, Nombre Científico o Ubicación"
+        placeholder="Buscar..."
         value={search}
-        onChange={handleSearch}
+        onChange={(e) => setSearch(e.target.value)}
         className="input-field"
-      />
-    </div>
-
-      
+      /></center> 
+      <br></br>
       <table>
         <thead>
           <tr>
@@ -43,18 +32,16 @@ function EspeciesM() {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((manati) => (
-            <tr key={manati.nombreCientifico}>
-              <td>{manati.nombreComun}</td>
-              <td>{manati.nombreCientifico}</td>
-              <td>{manati.ubicacion}</td>
+          {filteredEspecies.map((especie, index) => (
+            <tr key={index}>
+              <td>{especie.nombreComun}</td>
+              <td>{especie.nombreCientifico}</td>
+              <td>{especie.ubicacion}</td>
             </tr>
           ))}
         </tbody>
       </table>
-
-      <br />
-
+      <br></br>
       <section className="card-section mb-4">
         <div className="card-content p-4">
           <h3 className="text-success">Sabías que...</h3>
@@ -62,9 +49,8 @@ function EspeciesM() {
           <p>Se comunican a través de una variedad de vocalizaciones, como chillidos, gruñidos y silbidos. Estas vocalizaciones sirven para diversos propósitos, como mantener el contacto con otros manatíes, expresar emociones y alertar sobre peligros. Son animales muy curiosos y a menudo se acercan a los barcos y a los humanos.</p>
         </div>
       </section>
-
       <center>
-        <img
+      <img
           src="https://t1.ea.ltmcdn.com/es/posts/2/1/7/tipos_de_manaties_25712_1_orig.jpg"
           alt="Manatí"
           className="img-fluid"
@@ -75,9 +61,7 @@ function EspeciesM() {
             borderRadius: '15px',
             transition: 'transform 0.3s ease-in-out',
           }}
-        />
-        <br />
-      </center>
+        /></center>
     </div>
   );
 }

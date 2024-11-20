@@ -1,164 +1,138 @@
-import React, { useEffect, useState } from 'react';
-import { informacion2 } from '../Bd/Datos';
+import React, { useContext, useState } from 'react';
+import { EspeciesContext } from '../componentes/Especies/EspeciesContext';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 function GestionEs() {
-  const [info, setInfo] = useState([]);
+  const { especies, setEspecies } = useContext(EspeciesContext); // Acceso al estado global
   const [showModal, setShowModal] = useState(false);
   const [values, setValues] = useState({
     nombreComun: '',
-    nombreCientifico: "",
-    ubicacion: ""
+    nombreCientifico: '',
+    ubicacion: '',
   });
-
   const [editingIndex, setEditingIndex] = useState(null);
 
   const abrirModal = () => setShowModal(true);
   const cerrarModal = () => setShowModal(false);
 
   const obtenerValues = (e) => {
-    e.preventDefault();
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
 
   const guardarInformacion2 = () => {
+    if (!values.nombreComun || !values.nombreCientifico || !values.ubicacion) {
+      alert('Por favor, completa todos los campos.');
+      return;
+    }
+
     if (editingIndex !== null) {
-      const updatedInfo = [...info];
-      updatedInfo[editingIndex] = values;
-      setInfo(updatedInfo);
+      const updatedEspecies = [...especies];
+      updatedEspecies[editingIndex] = values;
+      setEspecies(updatedEspecies);
       setEditingIndex(null);
     } else {
-      setInfo([...info, values]);
+      setEspecies([...especies, values]);
     }
     setValues({ nombreComun: '', nombreCientifico: '', ubicacion: '' });
-  };
-
-  const mostrarInfo = () => {
-    setInfo(informacion2);
+    cerrarModal();
   };
 
   const eliminarInfo = (index) => {
-    const updatedInfo = info.filter((_, i) => i !== index);
-    setInfo(updatedInfo);
+    setEspecies(especies.filter((_, i) => i !== index));
   };
 
   const editarInfo = (index) => {
     setEditingIndex(index);
-    setValues(info[index]);
+    setValues(especies[index]);
     abrirModal();
   };
 
-  useEffect(() => {
-    mostrarInfo();
-  }, []);
-
   return (
     <>
-          <center> <h1>Especies De Manatis</h1></center>
+      <center><h1>Especies De Manatíes</h1></center>
       <div className="row">
-        <Button variant="primary" onClick={abrirModal}>
-          Agregar Especies...
-        </Button>
+      <Button variant="primary" onClick={abrirModal}>
+        Agregar Especies...
+      </Button>
 
-        <Modal show={showModal} onHide={cerrarModal}>
-          <Modal.Header closeButton>
-            <Modal.Title>Especies</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <form>
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">
-                  Nombre
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  placeholder="Ingresa el nombre de la especie"
-                  name="nombreComun"
-                  onChange={obtenerValues}
-                  value={values.nombreComun}
-                />
-              </div>
-
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">
-                  Nombre Cientifico
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  placeholder="Ingresa el nombre cientifico de la especie"
-                  name="nombreCientifico"
-                  onChange={obtenerValues}
-                  value={values.nombreCientifico}
-                />
-              </div>
-
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">
-                  Ubicacion
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  placeholder="Ingresa la ubicacion de la especie"
-                  name="ubicacion"
-                  onChange={obtenerValues}
-                  value={values.ubicacion}
-                />
-              </div>
-            </form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={cerrarModal}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={guardarInformacion2}>
-              Guardar
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </div>
-      <table class="table">
+      <Modal show={showModal} onHide={cerrarModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Agregar Nueva Especies</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form>
+            <center>
+          <div className="mb-3">
+          <label className="form-label">Nombre Comun:</label>
+          <br></br>
+            <input
+              type="text"
+              placeholder="Ingresa Nombre común"
+              name="nombreComun"
+              value={values.nombreComun}
+              onChange={obtenerValues}
+              className="input-field"
+            /></div>
+          <div className="mb-3">
+          <label className="form-label">Nombre Científico:</label>
+          <br></br>
+            <input
+              type="text"
+              placeholder="Ingresa Nombre científico"
+              name="nombreCientifico"
+              value={values.nombreCientifico}
+              onChange={obtenerValues}
+               className="input-field"
+            /></div>
+          <div className="mb-3">
+          <label className="form-label">Nombre De La Ubicación:</label>
+          <br></br>
+            <input
+              type="text"
+              placeholder="Ubicación"
+              name="ubicacion"
+              value={values.ubicacion}
+              onChange={obtenerValues}
+              className="input-field"
+            /></div>
+            </center>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={cerrarModal}>
+            Cerrar
+          </Button>
+          <Button variant="primary" onClick={guardarInformacion2}>
+            Guardar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+</div>
+      <table>
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Nombre cientifico</th>
-            <th scope="col">Ubicacion</th>
-            <th scope="col">Modificar</th>
-            <th scope="col">Eliminar</th>
+            <th>Nombre Común</th>
+            <th>Nombre Científico</th>
+            <th>Ubicación</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
           </tr>
         </thead>
         <tbody>
-          {info.map((values, index) => (
+          {especies.map((especie, index) => (
             <tr key={index}>
-              <th scope="row">{index + 1}</th>
-              <td>{values.nombreComun}</td>
-              <td>{values.nombreCientifico}</td>
-              <td>{values.ubicacion}</td>
+              <td>{especie.nombreComun}</td>
+              <td>{especie.nombreCientifico}</td>
+              <td>{especie.ubicacion}</td>
               <td>
-                <button
-                  type="button"
-                  class="btn btn-info"
-                  onClick={() => editarInfo(index)}
-                >
-                  <i class="bi bi-pencil-fill"></i>
-                </button>
+                <button onClick={() => editarInfo(index)} type="button"
+                  class="btn btn-info"> <i class="bi bi-pencil-fill"></i></button>
               </td>
               <td>
-                <button
-                  type="button"
-                  class="btn btn-danger"
-                  onClick={() => eliminarInfo(index)}
-                >
-                  <i class="bi bi-trash-fill"></i>
-                </button>
+                <button onClick={() => eliminarInfo(index)} type="button"
+                  class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
               </td>
             </tr>
           ))}

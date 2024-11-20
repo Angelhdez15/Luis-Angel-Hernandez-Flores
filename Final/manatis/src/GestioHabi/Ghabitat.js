@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { informacion } from '../Bd/Datos';
+import { HabitatContext } from './HabitatContext';
 
 function GestionHab() {
-  const [info, setInfo] = useState([]);
+  const { habitats, setHabitats } = useContext(HabitatContext); // Accede al contexto
   const [showModal, setShowModal] = useState(false);
   const [values, setValues] = useState({
     especie: '',
-    ubicacion: "",
-    alimentacion: "",
-    vegetacion: ""
+    ubicacion: '',
+    alimentacion: '',
+    vegetacion: ''
   });
-
   const [editingIndex, setEditingIndex] = useState(null);
 
   const abrirModal = () => setShowModal(true);
@@ -26,38 +25,31 @@ function GestionHab() {
 
   const guardarInformacion = () => {
     if (editingIndex !== null) {
-      const updatedInfo = [...info];
-      updatedInfo[editingIndex] = values;
-      setInfo(updatedInfo);
+      const updatedHabitats = [...habitats];
+      updatedHabitats[editingIndex] = values;
+      setHabitats(updatedHabitats);
       setEditingIndex(null);
     } else {
-      setInfo([...info, values]);
+      setHabitats([...habitats, values]);
     }
-    setValues({ especie: '',  ubicacion: '', alimentacion: '',vegetacion:"" });
-  };
-
-  const mostrarInfo = () => {
-    setInfo(informacion);
+    setValues({ especie: '', ubicacion: '', alimentacion: '', vegetacion: '' });
+    cerrarModal();
   };
 
   const eliminarInfo = (index) => {
-    const updatedInfo = info.filter((_, i) => i !== index);
-    setInfo(updatedInfo);
+    const updatedHabitats = habitats.filter((_, i) => i !== index);
+    setHabitats(updatedHabitats);
   };
 
   const editarInfo = (index) => {
     setEditingIndex(index);
-    setValues(info[index]);
+    setValues(habitats[index]);
     abrirModal();
   };
 
-  useEffect(() => {
-    mostrarInfo();
-  }, []);
-
   return (
     <>
-          <center> <h1>Habitas De Manatis</h1></center>
+      <center><h1>Hábitats De Manatíes</h1></center>
       <div className="row">
         <Button variant="primary" onClick={abrirModal}>
           Agregar Especies...
@@ -65,18 +57,15 @@ function GestionHab() {
 
         <Modal show={showModal} onHide={cerrarModal}>
           <Modal.Header closeButton>
-            <Modal.Title>Habitad</Modal.Title>
+            <Modal.Title>Hábitat</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form>
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">
-                  Especies
-                </label>
+              <div className="mb-3">
+                <label className="form-label">Especies</label>
                 <input
                   type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                  className="form-control"
                   placeholder="Ingresa el nombre de la especie"
                   name="especie"
                   onChange={obtenerValues}
@@ -84,44 +73,36 @@ function GestionHab() {
                 />
               </div>
 
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">
-                  Ubicacion
-                </label>
+              <div className="mb-3">
+                <label className="form-label">Ubicación</label>
                 <input
                   type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  placeholder="Ingresa el nombre cientifico de la especie"
+                  className="form-control"
+                  placeholder="Ingresa la ubicación de la especie"
                   name="ubicacion"
                   onChange={obtenerValues}
                   value={values.ubicacion}
                 />
               </div>
 
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">
-                  Alimentacion
-                </label>
+              <div className="mb-3">
+                <label className="form-label">Alimentación</label>
                 <input
                   type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  placeholder="Ingresa la ubicacion de la especie"
+                  className="form-control"
+                  placeholder="Ingresa la alimentación de la especie"
                   name="alimentacion"
                   onChange={obtenerValues}
                   value={values.alimentacion}
                 />
               </div>
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">
-                  Vegetacion
-                </label>
+
+              <div className="mb-3">
+                <label className="form-label">Vegetación</label>
                 <input
                   type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  placeholder="Ingresa la ubicacion de la especie"
+                  className="form-control"
+                  placeholder="Ingresa la vegetación de la especie"
                   name="vegetacion"
                   onChange={obtenerValues}
                   value={values.vegetacion}
@@ -139,42 +120,42 @@ function GestionHab() {
           </Modal.Footer>
         </Modal>
       </div>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Especies</th>
-            <th scope="col">ubicacion</th>
-            <th scope="col">Alimentacion</th>
-            <th scope="col">Vegetacion</th>
+            <th scope="col">Especie</th>
+            <th scope="col">Ubicación</th>
+            <th scope="col">Alimentación</th>
+            <th scope="col">Vegetación</th>
             <th scope="col">Modificar</th>
             <th scope="col">Eliminar</th>
           </tr>
         </thead>
         <tbody>
-          {info.map((values, index) => (
+          {habitats.map((item, index) => (
             <tr key={index}>
               <th scope="row">{index + 1}</th>
-              <td>{values.especie}</td>
-              <td>{values.ubicacion}</td>
-              <td>{values.alimentacion}</td>
-              <td>{values.vegetacion}</td>
+              <td>{item.especie}</td>
+              <td>{item.ubicacion}</td>
+              <td>{item.alimentacion}</td>
+              <td>{item.vegetacion}</td>
               <td>
                 <button
                   type="button"
-                  class="btn btn-info"
+                  className="btn btn-info"
                   onClick={() => editarInfo(index)}
                 >
-                  <i class="bi bi-pencil-fill"></i>
+                  <i className="bi bi-pencil-fill"></i>
                 </button>
               </td>
               <td>
                 <button
                   type="button"
-                  class="btn btn-danger"
+                  className="btn btn-danger"
                   onClick={() => eliminarInfo(index)}
                 >
-                  <i class="bi bi-trash-fill"></i>
+                  <i className="bi bi-trash-fill"></i>
                 </button>
               </td>
             </tr>

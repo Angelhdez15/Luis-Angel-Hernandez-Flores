@@ -1,38 +1,36 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { HabitatContext } from '../../GestioHabi/HabitatContext';
 import bebe from './bebe.jpeg';
-import { informacion } from '../../Bd/Datos';
 
 function Habitas() {
-  // Estado para el término de búsqueda
+  const { habitats } = useContext(HabitatContext); // Accede al contexto
   const [search, setSearch] = useState('');
 
-  // Filtrado de los datos según el término de búsqueda
   const filteredData = !search
-    ? informacion
-    : informacion.filter((item) =>
+    ? habitats
+    : habitats.filter((item) =>
         item.especie.toLowerCase().includes(search.toLowerCase()) ||
         item.ubicacion.toLowerCase().includes(search.toLowerCase()) ||
         item.alimentacion.toLowerCase().includes(search.toLowerCase()) ||
         item.vegetacion.toLowerCase().includes(search.toLowerCase())
       );
 
-  // Función para manejar el cambio en el campo de búsqueda
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
 
   return (
     <div>
-      <center><h1>Hábitat De Las Especies De Los Manatíes</h1></center>
+      <center><h1>Hábitats De Las Especies De Los Manatíes</h1></center>
       <div className="input-container">
-      <input
-        type="text"
-        placeholder="Buscar por Especie, Ubicación, Alimentación o Vegetación"
-        value={search}
-        onChange={handleSearch}
-        className="input-field"
-      />
-    </div>
+        <input
+          type="text"
+          placeholder="Buscar por Especie, Ubicación, Alimentación o Vegetación"
+          value={search}
+          onChange={handleSearch}
+          className="input-field"
+        />
+      </div>
       
       <table>
         <thead>
@@ -54,9 +52,7 @@ function Habitas() {
           ))}
         </tbody>
       </table>
-
-      <br />
-
+<br></br>
       <section className="card-section mb-4">
         <div className="card-content p-4">
           <h3 className="text-success">Sabías que...</h3>
@@ -79,7 +75,6 @@ function Habitas() {
             transition: 'transform 0.3s ease-in-out',
           }}
         />
-        <br />
       </center>
     </div>
   );

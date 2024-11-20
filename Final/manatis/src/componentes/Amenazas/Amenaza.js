@@ -1,23 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { AmenazaContext } from '../../GestionAm/AmenazaContext';
 import manati from './manati.jpg';
-import { informacion3 } from '../../Bd/Datos';
 
 const Amenaza = () => {
-  // Estado para los datos y el término de búsqueda
-  const [manaties, setManaties] = useState([]);
+  const { manaties } = useContext(AmenazaContext); // Accede al contexto
   const [search, setSearch] = useState("");
 
-  // Función para cargar los datos (simulando una API, ya que los datos provienen de 'informacion3')
-  const loadData = () => {
-    setManaties(informacion3);
-  };
-
-  // Función para manejar el cambio del término de búsqueda
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  };
-
-  // Filtrado de datos según el término de búsqueda
   const filteredData = !search
     ? manaties
     : manaties.filter((manati) =>
@@ -26,24 +14,27 @@ const Amenaza = () => {
         manati.ubicacion.toLowerCase().includes(search.toLowerCase())
       );
 
-  // Usamos useEffect para cargar los datos al inicio
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
   useEffect(() => {
-    loadData();
+    // Aquí puedes cargar datos si fuera necesario
   }, []);
 
   return (
     <div>
       <center><h1>Amenazas De Las Especies De Manatíes</h1></center>
       <div className="input-container">
-      <input
-        type="text"
-        placeholder="Buscar Amenaza, Nombre Científico o Ubicación"
-        value={search}
-        onChange={handleSearch}
-        className="input-field"
-      />
-    </div>
-      
+        <input
+          type="text"
+          placeholder="Buscar Amenaza, Nombre Científico o Ubicación"
+          value={search}
+          onChange={handleSearch}
+          className="input-field"
+        />
+      </div>
+
       <table>
         <thead>
           <tr>
@@ -53,8 +44,8 @@ const Amenaza = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((manati) => (
-            <tr key={manati.nombreCientifico}>
+          {filteredData.map((manati, index) => (
+            <tr key={index}>
               <td>{manati.Amenaza}</td>
               <td>{manati.nombreCientifico}</td>
               <td>{manati.ubicacion}</td>
@@ -62,9 +53,8 @@ const Amenaza = () => {
           ))}
         </tbody>
       </table>
-
-      <br />
-
+<br></br>
+ 
       <section className="card-section mb-4">
         <div className="card-content p-4">
           <h3 className="text-success">Sabías que...</h3>
@@ -87,7 +77,6 @@ const Amenaza = () => {
             transition: 'transform 0.3s ease-in-out',
           }}
         />
-        <br />
       </center>
     </div>
   );
