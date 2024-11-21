@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { EspeciesContext } from './EspeciesContext';
+import { EspeciesContext } from '../../Gestion/EspeciesContext';
 
 function EspeciesM() {
-  const { especies } = useContext(EspeciesContext); // Accede al contexto
+  const { especies, sabiasQue, imagen } = useContext(EspeciesContext); // Acceso al contexto
   const [search, setSearch] = useState('');
 
   const filteredEspecies = especies.filter(
@@ -14,15 +14,17 @@ function EspeciesM() {
 
   return (
     <div>
-   <center><h1>Especies de Manatíes</h1>
-      <input
-        type="text"
-        placeholder="Buscar..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="input-field"
-      /></center> 
-      <br></br>
+      <center>
+        <h1>Especies de Manatíes</h1>
+        <input
+          type="text"
+          placeholder="Buscar..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="input-field"
+        />
+      </center>
+      <br />
       <table>
         <thead>
           <tr>
@@ -41,17 +43,16 @@ function EspeciesM() {
           ))}
         </tbody>
       </table>
-      <br></br>
+      <br />
       <section className="card-section mb-4">
         <div className="card-content p-4">
           <h3 className="text-success">Sabías que...</h3>
-          <p>A pesar de que pueden formar pequeños grupos, los manatíes son principalmente animales solitarios.</p>
-          <p>Se comunican a través de una variedad de vocalizaciones, como chillidos, gruñidos y silbidos. Estas vocalizaciones sirven para diversos propósitos, como mantener el contacto con otros manatíes, expresar emociones y alertar sobre peligros. Son animales muy curiosos y a menudo se acercan a los barcos y a los humanos.</p>
+          <p>{sabiasQue}</p>
         </div>
       </section>
       <center>
-      <img
-          src="https://t1.ea.ltmcdn.com/es/posts/2/1/7/tipos_de_manaties_25712_1_orig.jpg"
+        <img
+          src={imagen}
           alt="Manatí"
           className="img-fluid"
           style={{
@@ -61,7 +62,8 @@ function EspeciesM() {
             borderRadius: '15px',
             transition: 'transform 0.3s ease-in-out',
           }}
-        /></center>
+        />
+      </center>
     </div>
   );
 }

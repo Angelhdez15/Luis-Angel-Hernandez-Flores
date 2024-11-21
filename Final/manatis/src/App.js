@@ -3,7 +3,7 @@ import React from 'react'
 import { BrowserRouter as Router } from "react-router-dom";
 import Menu from './componentes/Inicio/Menu'
 import Rutas from './routes/Rutas';
-import { EspeciesProvider } from './componentes/Especies/EspeciesContext';
+import { EspeciesProvider } from './Gestion/EspeciesContext';
 import { HabitatProvider } from './GestioHabi/HabitatContext';
 import { AmenazaProvider } from './GestionAm/AmenazaContext';
 

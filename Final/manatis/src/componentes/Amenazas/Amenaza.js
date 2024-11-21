@@ -1,10 +1,9 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { AmenazaContext } from '../../GestionAm/AmenazaContext';
-import manati from './manati.jpg';
 
 const Amenaza = () => {
-  const { manaties } = useContext(AmenazaContext); // Accede al contexto
-  const [search, setSearch] = useState("");
+  const { manaties, sabiasQue, imagen } = useContext(AmenazaContext); // Obtener sabías que y imagen
+  const [search, setSearch] = useState('');
 
   const filteredData = !search
     ? manaties
@@ -17,10 +16,6 @@ const Amenaza = () => {
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
-
-  useEffect(() => {
-    // Aquí puedes cargar datos si fuera necesario
-  }, []);
 
   return (
     <div>
@@ -53,20 +48,20 @@ const Amenaza = () => {
           ))}
         </tbody>
       </table>
-<br></br>
- 
+      <br />
+
+      {/* Sección de "Sabías que..." */}
       <section className="card-section mb-4">
         <div className="card-content p-4">
           <h3 className="text-success">Sabías que...</h3>
-          <p>Los manatíes tienen una historia evolutiva fascinante que se remonta a millones de años, sus ancestros eran animales terrestres que, con el paso del tiempo, se adaptaron a la vida acuática.</p>
-          <p>Curiosidades:</p>
-          <p>Los manatíes pueden formar vínculos sociales y reconocer a otros individuos.</p>
+          <p>{sabiasQue}</p>
         </div>
       </section>
 
+      {/* Imagen del Manatí */}
       <center>
         <img
-          src={manati}
+          src={imagen} // Si no hay imagen personalizada, usa la predeterminada
           alt="Manatí"
           className="img-fluid"
           style={{
@@ -80,6 +75,6 @@ const Amenaza = () => {
       </center>
     </div>
   );
-}
+};
 
 export default Amenaza;

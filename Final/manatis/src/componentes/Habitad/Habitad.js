@@ -1,9 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { HabitatContext } from '../../GestioHabi/HabitatContext';
-import bebe from './bebe.jpeg';
 
 function Habitas() {
-  const { habitats } = useContext(HabitatContext); // Accede al contexto
+  const { habitats, sabiasQue, imagen } = useContext(HabitatContext); // Acceso al contexto
   const [search, setSearch] = useState('');
 
   const filteredData = !search
@@ -15,23 +14,19 @@ function Habitas() {
         item.vegetacion.toLowerCase().includes(search.toLowerCase())
       );
 
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  };
-
   return (
     <div>
-      <center><h1>Hábitats De Las Especies De Los Manatíes</h1></center>
-      <div className="input-container">
+      <center>
+        <h1>Hábitats De Las Especies De Los Manatíes</h1>
         <input
           type="text"
           placeholder="Buscar por Especie, Ubicación, Alimentación o Vegetación"
           value={search}
-          onChange={handleSearch}
+          onChange={(e) => setSearch(e.target.value)}
           className="input-field"
         />
-      </div>
-      
+      </center>
+      <br />
       <table>
         <thead>
           <tr>
@@ -52,19 +47,16 @@ function Habitas() {
           ))}
         </tbody>
       </table>
-<br></br>
+      <br />
       <section className="card-section mb-4">
         <div className="card-content p-4">
           <h3 className="text-success">Sabías que...</h3>
-          <p>La gestación de una cría de manatí dura aproximadamente 13 meses.</p>
-          <p>Las crías nacen en el agua y pesan alrededor de 30 kilogramos, y las madres amamantan a sus crías durante varios meses.</p>
-          <p>Aunque su visión no es su sentido más desarrollado, pueden distinguir formas y movimientos. Las vibrisas (bigotes) les ayudan a percibir el entorno y a encontrar alimento.</p>
+          <p>{sabiasQue}</p>
         </div>
       </section>
-
       <center>
         <img
-          src={bebe}
+          src={imagen}
           alt="Manatí"
           className="img-fluid"
           style={{

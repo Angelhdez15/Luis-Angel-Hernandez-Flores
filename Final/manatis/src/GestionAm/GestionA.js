@@ -4,8 +4,11 @@ import Modal from 'react-bootstrap/Modal';
 import { AmenazaContext } from './AmenazaContext';
 
 function GestionA() {
-  const { manaties, setManaties } = useContext(AmenazaContext); // Accede al contexto
-  const [showModal, setShowModal] = useState(false);
+  const { manaties, setManaties, sabiasQue, setSabiasQue, imagen, setImagen } = useContext(AmenazaContext); // Acceder al contexto
+  const [showAddModal, setShowAddModal] = useState(false); // Modal para agregar/editar amenazas
+  const [showInfoModal, setShowInfoModal] = useState(false); // Modal para modificar "Sabías que..." e imagen
+  const [newSabiasQue, setNewSabiasQue] = useState(sabiasQue);
+  const [newImagen, setNewImagen] = useState(imagen);
   const [values, setValues] = useState({
     Amenaza: '',
     ubicacion: '',
@@ -13,8 +16,20 @@ function GestionA() {
   });
   const [editingIndex, setEditingIndex] = useState(null);
 
-  const abrirModal = () => setShowModal(true);
-  const cerrarModal = () => setShowModal(false);
+  // Modal para agregar o editar amenazas
+  const abrirAddModal = () => setShowAddModal(true);
+  const cerrarAddModal = () => setShowAddModal(false);
+
+  // Modal para modificar "Sabías que..." e imagen
+  const abrirInfoModal = () => setShowInfoModal(true);
+  const cerrarInfoModal = () => setShowInfoModal(false);
+
+  const handleSave = () => {
+    // Actualiza los datos "Sabías que..." y la imagen
+    setSabiasQue(newSabiasQue);
+    setImagen(newImagen);
+    cerrarInfoModal();
+  };
 
   const obtenerValues = (e) => {
     e.preventDefault();
@@ -32,7 +47,7 @@ function GestionA() {
       setManaties([...manaties, values]);
     }
     setValues({ Amenaza: '', ubicacion: '', nombreCientifico: '' });
-    cerrarModal();
+    cerrarAddModal();
   };
 
   const eliminarInfo = (index) => {
@@ -43,20 +58,20 @@ function GestionA() {
   const editarInfo = (index) => {
     setEditingIndex(index);
     setValues(manaties[index]);
-    abrirModal();
+    abrirAddModal();
   };
 
   return (
     <>
       <center><h1>Amenazas De Manatíes</h1></center>
       <div className="row">
-        <Button variant="primary" onClick={abrirModal}>
+        <Button variant="primary" onClick={abrirAddModal}>
           Agregar Amenaza...
         </Button>
 
-        <Modal show={showModal} onHide={cerrarModal}>
+        <Modal show={showAddModal} onHide={cerrarAddModal}>
           <Modal.Header closeButton>
-            <Modal.Title>Amenaza</Modal.Title>
+            <Modal.Title>{editingIndex !== null ? 'Editar Amenaza' : 'Agregar Amenaza'}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form>
@@ -98,12 +113,49 @@ function GestionA() {
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={cerrarModal}>
+            <Button variant="secondary" onClick={cerrarAddModal}>
               Cerrar
             </Button>
             <Button variant="primary" onClick={guardarinformacion3}>
               Guardar
             </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+
+      {/* Modal para modificar "Sabías que..." e Imagen */}
+      <div className="row mt-3">
+        <Button variant="info" onClick={abrirInfoModal}>Modificar "Sabías que..." e Imagen</Button>
+
+        <Modal show={showInfoModal} onHide={cerrarInfoModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modificar Información</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="mb-3">
+              <label>Texto "Sabías que...":</label>
+              <textarea
+                value={newSabiasQue}
+                onChange={(e) => setNewSabiasQue(e.target.value)}
+                placeholder="Nuevo texto"
+                rows="3"
+                style={{ width: '100%' }}
+              />
+            </div>
+            <div className="mb-3">
+              <label>URL de la Imagen:</label>
+              <input
+                type="text"
+                value={newImagen}
+                onChange={(e) => setNewImagen(e.target.value)}
+                placeholder="URL de la nueva imagen"
+                style={{ width: '100%' }}
+              />
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={cerrarInfoModal}>Cerrar</Button>
+            <Button variant="primary" onClick={handleSave}>Guardar</Button>
           </Modal.Footer>
         </Modal>
       </div>

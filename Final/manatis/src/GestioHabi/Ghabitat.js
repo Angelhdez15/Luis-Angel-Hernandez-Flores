@@ -4,18 +4,23 @@ import Modal from 'react-bootstrap/Modal';
 import { HabitatContext } from './HabitatContext';
 
 function GestionHab() {
-  const { habitats, setHabitats } = useContext(HabitatContext); // Accede al contexto
+  const { habitats, setHabitats, sabiasQue, setSabiasQue, imagen, setImagen } = useContext(HabitatContext); // Acceso al contexto
   const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false); // Modal para "Sabías que..."
   const [values, setValues] = useState({
     especie: '',
     ubicacion: '',
     alimentacion: '',
     vegetacion: ''
   });
+  const [nuevoSabiasQue, setNuevoSabiasQue] = useState(sabiasQue);
+  const [nuevaImagen, setNuevaImagen] = useState(imagen);
   const [editingIndex, setEditingIndex] = useState(null);
 
   const abrirModal = () => setShowModal(true);
   const cerrarModal = () => setShowModal(false);
+  const abrirEditModal = () => setShowEditModal(true);
+  const cerrarEditModal = () => setShowEditModal(false);
 
   const obtenerValues = (e) => {
     e.preventDefault();
@@ -36,6 +41,12 @@ function GestionHab() {
     cerrarModal();
   };
 
+  const guardarSabiasQueYImagen = () => {
+    setSabiasQue(nuevoSabiasQue);
+    setImagen(nuevaImagen);
+    cerrarEditModal();
+  };
+
   const eliminarInfo = (index) => {
     const updatedHabitats = habitats.filter((_, i) => i !== index);
     setHabitats(updatedHabitats);
@@ -49,12 +60,18 @@ function GestionHab() {
 
   return (
     <>
-      <center><h1>Hábitats De Manatíes</h1></center>
+      <center>
+        <h1>Hábitats De Manatíes</h1>
+      </center>
       <div className="row">
         <Button variant="primary" onClick={abrirModal}>
           Agregar Especies...
         </Button>
+        <Button variant="secondary" className="ms-3" onClick={abrirEditModal}>
+          Editar "Sabías que..., y cambiar imagen"
+        </Button>
 
+        {/* Modal para agregar/editar hábitats */}
         <Modal show={showModal} onHide={cerrarModal}>
           <Modal.Header closeButton>
             <Modal.Title>Hábitat</Modal.Title>
@@ -112,14 +129,52 @@ function GestionHab() {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={cerrarModal}>
-              Close
+              Cerrar
             </Button>
             <Button variant="primary" onClick={guardarInformacion}>
               Guardar
             </Button>
           </Modal.Footer>
         </Modal>
+
+        {/* Modal para editar "Sabías que..." */}
+        <Modal show={showEditModal} onHide={cerrarEditModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Editar "Sabías que..., y cambiar imgen"</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="mb-3">
+              <label className="form-label">Texto de "Sabías que..."</label>
+              <textarea
+                className="form-control"
+                rows="3"
+                value={nuevoSabiasQue}
+                onChange={(e) => setNuevoSabiasQue(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">URL de la imagen</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Ingresa la URL de la imagen"
+                value={nuevaImagen}
+                onChange={(e) => setNuevaImagen(e.target.value)}
+              />
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={cerrarEditModal}>
+              Cerrar
+            </Button>
+            <Button variant="primary" onClick={guardarSabiasQueYImagen}>
+              Guardar
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
+
+      {/* Tabla de hábitats */}
       <table className="table">
         <thead>
           <tr>
