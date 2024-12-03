@@ -11,7 +11,7 @@ export const HabitatProvider = ({ children }) => {
     'Su Importancia Ecologica: al controlar la población de plantas acuáticas, los manatíes ayudan a mantener el equilibrio de los ecosistemas marinos, Cuando se les da tareas específicas los manatíes han demostrado un desempeño igual al de los delfines...'
   );
   const [imagen, setImagen] = useState(
-    'https://t1.ea.ltmcdn.com/es/posts/2/1/7/tipos_de_manaties_25712_1_orig.jpg'
+    'https://cdn0.expertoanimal.com/es/posts/2/1/7/caracteristicas_del_manati_25712_0_600.webp'
   );
 
   return (

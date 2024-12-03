@@ -1,4 +1,4 @@
-export const informacion = [
+const informacion = [
     {
       especie: 'Manatí antillano o del Caribe (Trichechus manatus)',
       ubicacion: 'Caribe, incluyendo México, Belice, Colombia y Brasil',
@@ -18,7 +18,7 @@ export const informacion = [
       vegetacion: 'Plantas acuáticas de río, pastos marinos costeros',
     }
   ]
-  export const informacion2=[
+const informacion2=[
     {
       nombreComun:"Manatí Antillano"
       ,nombreCientifico:"Trichechus manatus"
@@ -35,9 +35,10 @@ export const informacion = [
     ,ubicacion:"África Occidental"
 },
   ]
-  export const informacion3 = [
+const informacion3 = [
     { Amenaza: 'Colisiones con embarcaciones', nombreCientifico: 'Manatí Antillano (Trichechus manatus)', ubicacion: 'Caribe' },
     { Amenaza: 'Caza furtiva y captura accidental', nombreCientifico: 'Manatí Africano (Trichechus senegalensis)', ubicacion: 'África Occidental' },
     { Amenaza: 'Crecimiento poblacional humano', nombreCientifico: 'Manatí Amazónico (Trichechus inunguis)', ubicacion: 'Amazonía' }
     
   ];
+  module.exports = { informacion, informacion2, informacion3 }

@@ -1,29 +1,42 @@
 const express = require("express");
-const bodyparser=require("body-parser");
-const cors = require ("cors");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 const path = require("path");
+
+// Importar las colecciones desde Datos.js
+const { informacion, informacion2, informacion3 } = require("../manatis/src/Bd/Datos");
+
 const app = express();
 const port = 3001;
-const buildPath = path.join(__dirname, '..', 'manatis', 'build');
+const buildPath = path.join(__dirname, "..", "manatis", "build");
 
-console.log('Ruta buildPath:', buildPath); // Verifica la ruta
+// Configuración del servidor
+console.log("Ruta buildPath:", buildPath);
+app.use(express.static(buildPath));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors());
 
-app.use(express.static(buildPath))
-app.get("*", (req, res) => {
-    console.log("Ruta encontrada, enviando index.html");
-    res.sendFile(path.join(buildPath, 'index.html'));
+// Rutas para servir las colecciones de datos
+app.get("/informacion", (req, res) => {
+    res.json(informacion);
 });
 
+app.get("/informacion2", (req, res) => {
+    res.json(informacion2);
+});
 
-app.use(bodyparser.urlencoded({extended:true}))
-app.use(bodyparser.json())
-app.use(cors())
+app.get("/informacion3", (req, res) => {
+    res.json(informacion3);
+});
 
-app.get("/mens",(req,res)=>{
-    res.send("Servidor funcional")
-})
+// Ruta principal
+app.get("*", (req, res) => {
+    console.log("Ruta encontrada");
+    res.sendFile(path.join(buildPath, "index.html"));
+});
 
-app.listen(port,()=>{
-    console.log("Servidor ejecutando en puerto");
-    
-})
+// Iniciar el servidor
+app.listen(port, () => {
+    console.log(`Servidor ejecutando en puerto ${port}`);
+});

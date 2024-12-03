@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { informacion2 } from '../Bd/Datos'; // Información inicial
+import { informacion2 } from '../Bd/Datos'; 
 
 export const EspeciesContext = createContext();
 
